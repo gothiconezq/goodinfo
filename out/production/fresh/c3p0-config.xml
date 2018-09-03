@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<c3p0-config>
+    <!-- 默认配置，如果没有指定则使用这个配置 -->
+    <default-config>
+        <property name="driverClass">com.mysql.jdbc.Driver</property>
+        <property name="jdbcUrl">jdbc:mysql://47.106.196.24:3306/fresh?useUnicode=true&amp;characterEncoding=UTF-8</property>
+        <property name="user">admin</property>
+        <property name="password">123456</property>
+        <!-- 初始化池大小 -->
+        <property name="initialPoolSize">10</property>
+        <!-- 最大空闲时间 -->
+        <property name="maxIdleTime">30</property>
+        <!-- 最多有多少个连接 -->
+        <property name="maxPoolSize">15</property>
+        <!-- 最少几个连接 -->
+        <property name="minPoolSize">5</property>
+        <!-- 每次最多可以执行多少个批处理语句 -->
+        <property name="maxStatements">50</property>
+    </default-config>
+    <!-- 命名的配置 -->
+    <named-config name="gothic"><!--这里是设置配置文件的名字-->
+        <property name="driverClass">com.mysql.jdbc.Driver</property>
+        <property name="jdbcUrl">jdbc:mysql://47.106.196.24:3306/fresh?useUnicode=true&amp;characterEncoding=UTF-8</property>
+        <property name="user">admin</property><!--mysql的登陆名-->
+        <property name="password">123456</property><!--如果没密码就可以设置成<property name="password"></property>-->
+        <property name="acquireIncrement">5</property><!-- 如果池中数据连接不够时一次增长多少个 -->
+        <property name="maxIdleTime">60</property><!--maxIdleTime：最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。-->
+        <property name="minPoolSize">5</property>
+        <property name="initialPoolSize">10</property><!--initialPoolSize：初始化时获取三个连接，取值应在minPoolSize与maxPoolSize之间。 -->
+        <property name="maxPoolSize">15</property>
+        <property name="autoCommitOnClose" value="false"></property><!-- 关闭事务的自动提交，对于事务自己来操作提交还是回滚 -->
+        <property name="checkoutTimeout" value="2000"></property><!--当连接池用完时客户端调用getConnection()后等待获取新连接的时间，超时后将抛出
+            SQLException,如设为0则无限期等待。单位毫秒。Default: 0 -->
+        <property name="acquireRetryAttempts" value="2"></property> <!--定义在从数据库获取新连接失败后重复尝试的次数。Default: 30 -->
+        <property name="maxStatements">100</property><!--maxStatements：最大链接数。-->
+        <property name="maxStatementsPerConnection">5</property> <!--maxStatementsPerConnection：定义了连接池内单个连接所拥有的最大缓存statements数。Default: 0  -->
+        <!-- he's important, but there's only one of him -->
+    </named-config>
+</c3p0-config>
